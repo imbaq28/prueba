@@ -22,8 +22,8 @@
 			margin-top: 0;
 		}
 		#mapa{					
-			height: 400px;
-			width: 700px;
+				height: 400px;
+				width: 700px;
 			border: solid 3px #5DADE2 ;			
 		}
 
@@ -31,13 +31,15 @@
 
 	<script type="text/javascript">
 		var init = function(){
-			var proyeccion = new OpenLayers.Projection("EPSG:900913");			
+			var proyeccion = new OpenLayers.Projection("EPSG:900913");	
+			var proyeccion2 = new OpenLayers.Projection("EPSG:4326");	
 			var controlNavegacion = new OpenLayers.Control.Navigation();
 			var controlZoom = new OpenLayers.Control.PanZoomBar(); 		
 
 			// Propiedades del objeto Map
 			var propiedades = {
-				projection: proyeccion,				
+				projection: proyeccion,	
+				displayProjection: proyeccion2,			
 				units: 'm',
 				controls: [controlNavegacion, controlZoom],
 				numZoomLevels: 21
@@ -49,7 +51,22 @@
 			var layerOSM = new OpenLayers.Layer.OSM();
  			map.addLayer(layerOSM);
 
+ 			var map = new OpenLayers.Map("mapa", propiedades);	
+
+			// Capa OSM
+			var layerOSM = new OpenLayers.Layer.OSM();
+			map.addLayer(layerOSM);
+
+			var LonLat = new OpenLayers.LonLat(-64.819336, -17.379999);
+			var zoom = 5;
+			var LonLatTransformado = LonLat.transform(
+				new OpenLayers.Projection("EPSG:4326"),
+				map.getProjection() // new OpenLayers.Projection("EPSG:900913")
+			);
+			map.setCenter(LonLatTransformado, zoom);
 		}
+
+
 	window.onload = init;
 	</script>
 
