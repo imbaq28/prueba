@@ -45,9 +45,7 @@
 				displayProjection: proyeccion2,			
 				units: 'm',
 				controls: [controlNavegacion, controlZoom],
-				numZoomLevels: 21,		
-							
-				maxExtent:[-64.819336, -17.379999]
+				numZoomLevels: 21						
 			};
 
 			//Creación de una instancia de la clase Map
@@ -69,8 +67,8 @@
 			var layerGoogleSatelital = new OpenLayers.Layer.Google("Google Satelital",{type:google.maps.MapTypeId.SATELLITE});
 			var layerGoogleHibrido = new OpenLayers.Layer.Google("Google Hidrido",{type:google.maps.MapTypeId.HYBRID});
 			var layerGoogleTerrain = new OpenLayers.Layer.Google("Google Terrain",{type:google.maps.MapTypeId.TERRAIN});
-
-			map.addLayers([layerGoogleHibrido, layerGoogleSatelital, layerGoogleTerrain]);
+			var layerGoogleRoadmap = new OpenLayers.Layer.Google("Google Roadmap",{type:google.maps.MapTypeId.ROADMAP});
+			map.addLayers([layerGoogleHibrido, layerGoogleSatelital, layerGoogleTerrain,layerGoogleRoadmap]);
 
 			// Control de cambio de Capas
 			var controlCapas = new OpenLayers.Control.LayerSwitcher();
@@ -91,8 +89,9 @@
 			layerProvinciasWMS.setVisibility(false);
 			map.addLayer(layerProvinciasWMS);
 
-
-var nombreWMS = "Rios de Bolivia";
+			// Capa Presas 2010  
+			
+			var nombreWMS = "Rios de Bolivia";
 			var urlWMS = "http://geo.gob.bo/geoserver/wms";
 			var propiedadesWMS = {
 				layers: 'mdpdd:Rios',
@@ -102,9 +101,25 @@ var nombreWMS = "Rios de Bolivia";
 			layerRiosWMS.setVisibility(false);
 			map.addLayer(layerRiosWMS);
 
+		}
 
-	// Cargamos la función init, para desplegar el mapa
+			/*var layerPresas = new OpenLayers.Layer.WMS(
+				"Mapa de Represas",
+				, "C:\Users\Core i7\proyectogis\prueba\Shapes\Represas"
+				{
+					layers: 'ird:REPRESAS_P',
+					transparent: true
+				}
+			);
+			
+			map.addLayer(layerPresas);
+			layerPresas.setVisibility(false);*/
+
+
+
+		// Cargamos la función init, para desplegar el mapa
 		window.onload = init;
+
 	</script>
 
 </head>
@@ -118,7 +133,5 @@ var nombreWMS = "Rios de Bolivia";
     <button type="button" class="btn btn-default" id="Argentina">Argentina</button>
     <button type="button" class="btn btn-default" id="Nigeria">Nigeria</button>
     <button type="button" class="btn btn-default" id="Sweden">Sweden</button>
-	
-
 </body>
 </html>
