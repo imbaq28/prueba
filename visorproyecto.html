@@ -101,25 +101,27 @@
 			layerRiosWMS.setVisibility(false);
 			map.addLayer(layerRiosWMS);
 
-		}
+		
 
-			/*var layerPresas = new OpenLayers.Layer.WMS(
+		// Capa Presas 2010  
+			var layerPresas = new OpenLayers.Layer.WMS(
 				"Mapa de Represas",
-				, "C:\Users\Core i7\proyectogis\prueba\Shapes\Represas"
+				"localhost:8080/geoserver/wms",
 				{
-					layers: 'ird:REPRESAS_P',
+					layers: 'posgis:REPRESAS_P',
 					transparent: true
 				}
 			);
+			map.addLayer(layerPresas);			
+			layerPresas.setVisibility(false);
+
 			
-			map.addLayer(layerPresas);
-			layerPresas.setVisibility(false);*/
 
 
-
+		}
 		// Cargamos la función init, para desplegar el mapa
 		window.onload = init;
-
+	
 	</script>
 
 </head>
