@@ -115,6 +115,13 @@
 			map.addLayer(layerPresas);			
 			layerPresas.setVisibility(false);
 
+			//tratando de obtener la longitud y latitud en el evento click del mapa
+			document.getElementById("mapa").onclick= function(){
+
+				var content = map.getLonLatFromPixel(event.xy);
+				document.getElementById('resultado').innerHTML +=' '+ content + '<br>';
+			}
+
 			
 
 
@@ -130,10 +137,7 @@
 		<h2>Aplicando lo aprendido</h2>
 	</div>	
 	<h1>Mapa Geografico apuntando a Bolivia</h1>		
-	<div id="mapa"></div>	
-	<button type="button" class="btn btn-default" id="India">India</button>
-    <button type="button" class="btn btn-default" id="Argentina">Argentina</button>
-    <button type="button" class="btn btn-default" id="Nigeria">Nigeria</button>
-    <button type="button" class="btn btn-default" id="Sweden">Sweden</button>
+	<div id="mapa"></div>		
+    <div id="resultado"></div>
 </body>
 </html>
