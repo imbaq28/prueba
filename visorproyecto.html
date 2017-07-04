@@ -120,9 +120,19 @@
 
 				var content = map.getLonLatFromPixel(event.xy);
 				document.getElementById('resultado').innerHTML +=' '+ content + '<br>';
+				document.getElementById('lon').innerHTML = content.lon;
+				document.getElementById('lat').innerHTML = content.lat;
 			}
 
+			document.getElementById("borrar").onclick= function(){
+
+				document.getElementById("resultado").innerHTML="";
+				document.getElementById("lon").innerHTML="";
+				document.getElementById("latitud").innerHTML="";
+			}
 			
+
+
 
 
 		}
@@ -138,6 +148,18 @@
 	</div>	
 	<h1>Mapa Geografico apuntando a Bolivia</h1>		
 	<div id="mapa"></div>		
+	Datos a enviar:
+	<textarea id="lon"></textarea> 
+    <textarea id=lat></textarea> 
+    <button type="button" class="btn btn-default" id="enviar">Enviar</button>
+    <button type="button" class="btn btn-default" id="borrar">Borrar</button>
     <div id="resultado"></div>
+
+    <hr>
+    <form action="conect.php" method="post" enctype="multipart/form-data">
+   
+   
+    
+</form>
 </body>
 </html>
